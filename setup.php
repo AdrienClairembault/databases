@@ -60,6 +60,7 @@ function plugin_init_databases() {
    }
 
    if (Session::getLoginUserID()) {
+      global $CFG_GLPI;
 
       $plugin = new Plugin();
       if (!$plugin->isActivated('environment')
@@ -82,6 +83,8 @@ function plugin_init_databases() {
 
       // Import from Data_Injection plugin
       $PLUGIN_HOOKS['migratetypes']['databases'] = 'plugin_datainjection_migratetypes_databases';
+
+      $CFG_GLPI["impact_asset_types"]["PluginDatabasesDatabase"] = "plugins/databases/img/database.png";
    }
 }
 
@@ -112,8 +115,8 @@ function plugin_version_databases() {
  * @return bool
  */
 function plugin_databases_check_prerequisites() {
-   if (version_compare(GLPI_VERSION, '9.4', 'lt') 
-         || version_compare(GLPI_VERSION, '9.5', 'ge')) {
+   if (version_compare(GLPI_VERSION, '9.4', 'lt')
+         || version_compare(GLPI_VERSION, '9.6', 'ge')) {
       if (method_exists('Plugin', 'messageIncompatible')) {
          echo Plugin::messageIncompatible('core', '9.4');
       }

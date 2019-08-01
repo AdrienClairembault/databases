@@ -272,6 +272,7 @@ class PluginDatabasesDatabase extends CommonDBTM {
 
       $ong = [];
       $this->addDefaultFormTab($ong);
+      $this->addImpactTab($ong, $options);
       $this->addStandardTab('PluginDatabasesDatabase_Item', $ong, $options);
       $this->addStandardTab('PluginDatabasesInstance', $ong, $options);
       $this->addStandardTab('PluginDatabasesScript', $ong, $options);
